@@ -1,0 +1,43 @@
+body
+{
+background-image: url(image.jpg);
+
+background-size: 100%;
+
+
+}
+
+table
+{
+  
+background-color: rgba(0,0,0,0.3);	
+border-radius: 15px;
+color: white;
+box-shadow: 2px 5px 10px 1px;
+}
+/* table, td{
+  border: 1px solid blue;
+} */
+#data
+{
+margin-top: 24px;
+
+}
+.B
+{
+width: 70px;
+height: 35px;
+background:linear-gradient(red,blue);
+color:white;
+box-shadow: 1px 1px 1px 1px ;
+
+}
+.B:hover
+{
+background:linear-gradient(blue,black);	
+}
+#t1
+{
+	
+box-shadow: -1px 1px 6px 2px;
+}
