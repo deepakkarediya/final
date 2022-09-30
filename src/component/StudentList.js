@@ -32,6 +32,7 @@ export default class StudentList extends Base {
         axios.get(url).then((res) => {
             this.changeInputError("message", "Data Deleted Successfully");
             this.changeInputError("error", "false");
+            this.changeInputError("type", "success");
             this.search();
         });
     }
@@ -41,19 +42,16 @@ export default class StudentList extends Base {
     render() {
         return (
             <>
-              {(()=>{if(this.state.inputError.message){
+               {(()=>{if(this.state.inputError.message){
               return(
-                
-            <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-              <div > <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-            </div>
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
               )
-
             }
             })()
             }
-                <div className="container overflow-hidden text-center my-5">
+                <div  style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
                             <div className="p-3 ">  <input name="collegeId" type="number" placeholder='Search by collegeId'
@@ -61,7 +59,7 @@ export default class StudentList extends Base {
                                 onChange={(event) => this.changeState(event)} /></div>
                         </div>
                         <div className="col text-start">
-                            <div className="p-3 "><input name="email" placeholder='Search by email' type="number"
+                            <div className="p-3 "><input name="email" placeholder='Search by email' type="email"
                                 value={this.state.email}
                                 onChange={this.changeState} /> &nbsp; &nbsp;
                                 <button type='button'
@@ -70,7 +68,7 @@ export default class StudentList extends Base {
 
                     </div>
                 </div>
-                <table style={{ width: "70%", margin: "0px 150px" }} className="table table-success table-hover table-bordered border-success">
+                <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">
                         <tr>
                             <th scope="col">id</th>

@@ -14,7 +14,9 @@ export default class AddUser extends Base {
                 firstName:'',
                 lastName:'',
                 loginId:'',
-                roleId:''
+                password:'',
+                roleId:'',
+                type:''
 
 
             },
@@ -22,7 +24,8 @@ export default class AddUser extends Base {
               firstName:'',
               lastName:'',
               loginId:'',
-              roleId:''
+              roleId:'',
+              password:''
                
             }
         }
@@ -33,15 +36,11 @@ export default class AddUser extends Base {
       
     }
     reset(){
-      this.setState({
-        form:{
-          firstName:'',
-          lastName:'',
-          loginId:'',
-          roleId:''
-           
-        }
-      })
+      this.changeInputError("firstName","");
+                this.changeInputError("lastName","");
+                this.changeInputError("loginId","");
+                this.changeInputError("password","");
+                this.changeInputError("roleId","");
     }
     getdata() {
         let id = this.props.match.params.uid;
@@ -59,8 +58,8 @@ export default class AddUser extends Base {
             console.log(res);
             if(res.data.result.inputerror){
 
+           
                 this.setState({inputError:res.data.result.inputerror});
-                this.changeInputError("error","true");
             }
             else{
                 this.changeInputError("message","Data save successfully");
@@ -68,7 +67,9 @@ export default class AddUser extends Base {
                 this.changeInputError("firstName","");
                 this.changeInputError("lastName","");
                 this.changeInputError("loginId","");
+                this.changeInputError("password","");
                 this.changeInputError("roleId","");
+                this.changeInputError("type", "success");
                 
 
 
@@ -79,16 +80,12 @@ export default class AddUser extends Base {
   render() {
     return (
       <>
-      
       {(()=>{if(this.state.inputError.message){
               return(
-                
-            <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-              <div > <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-            </div>
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
               )
-
             }
             })()
             }
@@ -106,7 +103,7 @@ export default class AddUser extends Base {
               if (!this.props.match.params.uid) {
                 return (
 
-                    <h4>ADD User</h4>
+                    <h4>Student Registration</h4>
                 )
               }
 
@@ -140,11 +137,19 @@ export default class AddUser extends Base {
           </tr>
           <tr>
           <td>LoginId:</td>
-          <td><input type="number" id="t1"  placeholder="Enter LoginId" name="loginId" value={this.state.form.loginId} onChange={this.changeFormState}/></td>
+          <td><input type="text" id="t1"  placeholder="Enter LoginId" name="loginId" value={this.state.form.loginId} onChange={this.changeFormState}/></td>
           </tr>
           <tr>
           <td colSpan="2" style={{textAlign:"center",padding:"0px 0px"}}><FormError errorName={this.getInputError('loginId')} /></td>          
           </tr>
+          <tr>
+          <td>Password:</td>
+          <td><input type="text" id="t1"  placeholder="Enter password" name="password" value={this.state.form.password} onChange={this.changeFormState}/></td>
+          </tr>
+          <tr>
+          <td colSpan="2" style={{textAlign:"center",padding:"0px 0px"}}><FormError errorName={this.getInputError('password')} /></td>          
+          </tr>
+         
           <tr>
           <td>RoleId:</td>
           <td><input type="number" id="t1"  placeholder="Enter RoleId" name="roleId" value={this.state.form.roleId} onChange={this.changeFormState}/></td>

@@ -18,7 +18,8 @@ export default class AddMarkSheet extends Base  {
             maths: '',
             studentId: '',
             message: '',
-            error: ''
+            error: '',
+            type:''
     
           },
           form: {
@@ -80,6 +81,7 @@ export default class AddMarkSheet extends Base  {
               this.changeInputError("chemistry", "")
               this.changeInputError("maths", "")
               this.changeInputError("studentId", "")
+              this.changeInputError("type", "success")
     
     
             }
@@ -91,13 +93,10 @@ export default class AddMarkSheet extends Base  {
           <>
            {(()=>{if(this.state.inputError.message){
               return(
-                
-            <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-              <div> <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-            </div>
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
               )
-
             }
             })()
             }

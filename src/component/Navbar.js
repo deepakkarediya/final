@@ -6,7 +6,7 @@ import {
 
 export default class Navbar extends Component {
   logout(){
-      window.localStorage.clear();
+      // window.localStorage.clear();
       window.location.href = "/";
   
   }
@@ -23,7 +23,7 @@ export default class Navbar extends Component {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     <li className="nav-item "> <img src={logo} alt="...." style={{width:"170px",height: "55px",margin: "0px 75px"}}/></li>
         <li className="nav-item" style={{ marginTop: "24px"}}>
-        <a className="nav-link active" aria-current="page" >Home</a>
+        <a className="nav-link active" aria-current="page" href='/e' >Home</a>
         </li>
         <li className="nav-item dropdown" style={{ marginTop: "24px"}}>
           <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import Base from "./Base"
 import FormError from './FormError'
@@ -12,7 +13,8 @@ export default class AddRole extends Base {
         error: '',
         message: '',
         name: '',
-        discription: ''
+        discription: '',
+        type: ''
 
 
       },
@@ -27,7 +29,7 @@ export default class AddRole extends Base {
     }
 
   }
-  reset(){
+  reset() {
     this.setState({
       form: {
         name: '',
@@ -59,6 +61,7 @@ export default class AddRole extends Base {
           this.changeInputError("error", "false");
           this.changeInputError("name", "");
           this.changeInputError("discription", "");
+          this.changeInputError("type", "success");
 
 
 
@@ -74,12 +77,9 @@ export default class AddRole extends Base {
           if (this.state.inputError.message) {
             return (
 
-              <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
+              <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
 
-                <div > <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-              </div>
             )
-
           }
         })()
         }
@@ -131,7 +131,7 @@ export default class AddRole extends Base {
                   </tr>
                   <tr>
                     <td style={{ textAlign: "center" }}> <button type='button' onClick={(event) => this.save(event)} className='B' style={{ width: "81px" }}>Add Role</button> </td>
-                    <td> <input type="reset" onClick={(event) => this.reset(event)} className="B"/></td>
+                    <td> <input type="reset" onClick={(event) => this.reset(event)} className="B" /></td>
                   </tr>
 
                 </tbody>

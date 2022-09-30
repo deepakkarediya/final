@@ -29,6 +29,7 @@ export default class CollegeList extends Base {
         axios.get(url).then((res) => {
             this.changeInputError("message", "Data Deleted Successfully");
             this.changeInputError("error", "false");
+            this.changeInputError("type", "success");
             this.search();
         });
     }
@@ -38,23 +39,19 @@ export default class CollegeList extends Base {
     render() {
         return (
             <>
-              {(() => {
-          if (this.state.inputError.message) {
-            return (
-
-              <div   style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-                <div > <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-              </div>
-            )
-
-          }
-        })()
-        }
-                <div className="container overflow-hidden text-center my-5">
+            {(()=>{if(this.state.inputError.message){
+              return(
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
+              )
+            }
+            })()
+            }
+                <div style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
-                            <div className="p-3 ">  <input name="phoneNo" placeholder='Search by phoneNo'
+                            <div className="p-3 ">  <input name="phoneNo"  type="number" placeholder='Search by phoneNo'
                                 value={this.state.phoneNo}
                                 onChange={(event) => this.changeState(event)} /></div>
                         </div>
@@ -68,7 +65,7 @@ export default class CollegeList extends Base {
 
                     </div>
                 </div>
-                <table style={{ width: "70%", margin: "0px 150px" }} className="table table-success table-hover table-bordered border-success">
+                <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">
                         <tr>
                             <th scope="col">id</th>
@@ -86,7 +83,7 @@ export default class CollegeList extends Base {
                         {this.state.list.map((ele, i) => (
                             <tr key={i}>
 
-                                <td>{ele.id}</td>
+                                <td>{i+1}</td>
 
                                 <td>{ele.name}</td>
                                 <td>{ele.phoneNo}</td>

@@ -16,10 +16,11 @@ export default class Base extends React.Component {
         this.setState({});
         
     }
-      changeInputError = (name, value) => {
+      changeInputError=(name, value) => {
         var data = this.state["inputError"];
         data[name] = value;
         this.setState(data);
+             
       }
       getInputError=( name)=>{
         var data=this.state["inputError"];

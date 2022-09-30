@@ -9,18 +9,26 @@ export default class MarkSheetList extends Base {
         this.state = {
             inputError: {
                 message: '',
-                error: ''
+                error: '',
+                type:""
             },
             rollNo: '',
             name: '',
-            list: []
+            list: [],
+            length:''
         }
         this.search();
     }
+   
+    
+    
     search() {
         axios.post("http://api.sunilos.com:9080/ORSP10/Marksheet/search", this.state)
             .then((res) => {
-                this.setState({ list: res.data.result.data });
+                // console.log(res);
+                this.setState({
+                list: res.data.result.data ,
+               });
             });
     }
     delete(id) {
@@ -28,26 +36,24 @@ export default class MarkSheetList extends Base {
         axios.get(url).then((res) => {
             this.changeInputError("message", "Data Deleted Successfully");
             this.changeInputError("error", "false");
+            this.changeInputError("type", "success");
+
             this.search();
         });
     }
     render() {
         return (
             <>
-                {(() => {
-                    if (this.state.inputError.message) {
-                        return (
-                            <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-                                <div >
-                                    <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} />
-                                </div>
-                            </div>
-                        )
-
-                    }
-                })()
-                }
-                <div className="container overflow-hidden text-center my-5">
+                 {(()=>{if(this.state.inputError.message){
+              return(
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
+              )
+            }
+            })()
+            }
+                <div style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
                             <div className="p-3 ">  <input name="rollNo" placeholder='Search by RollNo'
@@ -64,7 +70,7 @@ export default class MarkSheetList extends Base {
 
                     </div>
                 </div>
-                <table style={{ width: "70%", margin: "0px 150px" }} className="table table-success table-success table-bordered table-hover">
+                <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-success table-bordered table-hover">
                     <thead className="table-dark">
                         <tr>
                             <th scope="col">id</th>
@@ -81,7 +87,7 @@ export default class MarkSheetList extends Base {
                         {this.state.list.map((ele, i) => (
                             <tr key={i}>
 
-                                <td>{ele.id}</td>
+                                <td>{i+1}</td>
                                 <td>{ele.rollNo}</td>
                                 <td>{ele.name}</td>
                                 <td>{ele.physics}</td>
@@ -94,6 +100,11 @@ export default class MarkSheetList extends Base {
                         }
                     </tbody>
                 </table>
+                <div style={{    margin: '11px 300px'}}>
+
+                <button className='btn btn-primary' onClick={this.previousClick}>Previous</button>&nbsp;
+                <button  className='btn btn-primary' onClick={this.nextClick}>Next</button>
+                </div>
             </>
         )
     }

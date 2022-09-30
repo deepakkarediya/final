@@ -31,6 +31,7 @@ export default class UserList extends Base {
         axios.get(url).then((res) => {
             this.changeInputError("message", "Data Deleted Successfully");
             this.changeInputError("error", "false");
+            this.changeInputError("type", "success");
             this.search();
         });
     }
@@ -40,19 +41,16 @@ export default class UserList extends Base {
     render() {
         return (
             <>
-             {(()=>{if(this.state.inputError.message){
+          {(()=>{if(this.state.inputError.message){
               return(
-                
-            <div style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-              <div> <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-            </div>
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
               )
-
             }
             })()
             }
-                <div className="container overflow-hidden text-center my-5">
+                <div  style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
                             <div className="p-3 ">  <input name="loginId" type="number" placeholder='Search by loginId'
@@ -69,7 +67,7 @@ export default class UserList extends Base {
 
                     </div>
                 </div>
-                <table style={{ width: "70%", margin: "0px 150px" }} className="table table-success table-hover table-bordered border-success">
+                <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">
                         <tr>
                             <th scope="col">id</th>
@@ -77,6 +75,7 @@ export default class UserList extends Base {
                             <th scope="col">FirstName</th>
                             <th scope="col">LastName</th>
                             <th scope="col">LoginId</th>
+                            <th scope="col">Password</th>
                             <th scope="col">RoleId</th>
                             <th scope="col">Delete</th>
                             <th scope="col">Edit</th>
@@ -85,12 +84,11 @@ export default class UserList extends Base {
                     <tbody>
                         {this.state.list.map((ele, i) => (
                             <tr key={i}>
-
-                                <td>{ele.id}</td>
-
-                                <td>{ele.firstName}</td>
+                              <td>{i+1}</td>
+                               <td>{ele.firstName}</td>
                                 <td>{ele.lastName}</td>
                                 <td>{ele.loginId}</td>
+                                <td>{ele.password}</td>
                                 <td>{ele.roleId}</td>
                                
                                 <td> <button className="btn btn-primary " type="button" onClick={(event) => this.delete(ele.id)}>Delete</button> </td>

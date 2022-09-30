@@ -1,8 +1,7 @@
-// import React, { Component } from 'react'
-// import './MyCss.css'
 import axios from 'axios';
 import React from 'react'
 import ReactDOM from 'react-dom/client';
+
 import Base from './Base';
 import FormMessage from './FormMessage';
 import Nextpage from './Nextpage';
@@ -11,108 +10,109 @@ import Nextpage from './Nextpage';
 export default class Login extends Base {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       inputError: {
+        type:'',
         message: "",
         error: "",
-        userid: '',
+        loginId: '',
         password: ''
       },
 
       form: {
-        userid: "admin",
-        password: "1234"
+        loginId: "",
+        password: ""
       },
-      list:[]
+      list: []
     }
-    this.search();
+   
   }
-  
-  search=()=>{
-    axios.post("http://api.sunilos.com:9080/ORSP10/Student/search",this.state)
-    .then((res)=>{
-          this.setState({list:res.data.result.data});
-         });
-  }
-  
+
+ 
+
 
   login() {
+
+    axios.post("http://api.sunilos.com:9080/ORSP10/Auth/login",this.state.form)
+    .then((res)=>{
+     console.log(res)
+       if(res.data.success===true){
+         const root = ReactDOM.createRoot(document.getElementById('root'));
+         root.render(<Nextpage />);
+        
+      }
+     if(res.data.result.inputerror){
+      this.setState({inputError:res.data.result.inputerror})
+     }
+     if(res.data.result.message){
+      this.setState({inputError:res.data.result.message})
+
+      this.changeInputError("error","true");
+     }
+    })
    
-    if (this.state.form.userid === "admin" && this.state.form.password === "1234") {
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<Nextpage />);
-    }
-    else if (this.state.form.userid === "" || this.state.form.password === "") {
-      if (this.state.userid === "") {
-        this.changeInputError("userid", "name must not be null")
-      }
-      if (this.state.password === "") {
-        this.changeInputError("password", "password must not be null")
-      }
-
-    }
-    else {
-      this.changeInputError("message", "invalid user name and password")
-      this.changeInputError("userid", "")
-      this.changeInputError("password", "")
-      this.changeInputError("error", "true")
-    }
+    
+     
   }
-    render() {
-      
-        return (
+  render() {
 
-          <>
-          
-          <center>
+    return (
+
+      <>
+
+        <center>
           <div id="data">
-          <form>
-          <h2 style={{    borderRadius: "16px",
-    display: "inline-block",
-    width: "25%",
-    background: "linear-gradient(358deg, #ffe7e7, #bda1a108)"}}>Login</h2>
-          {(() => {
+            <form>
+              <h2 style={{
+                borderRadius: "16px",
+                display: "inline-block",
+                width: "25%",
+                background: "linear-gradient(358deg, #ffe7e7, #bda1a108)"
+              }}>Login</h2>
+              {(() => {
 
-if (this.state.error) {
-  return (
-    <div style={{ color: "red" }}> <FormMessage error={this.getInputError("error")} message={this.getInputError("message")} /></div>
+                if (this.state.inputError.error) {
+                  return (
+                    <div style={{ color: "#dfb007" }}> 
+                      <h4>{this.state.inputError.message}</h4>
+                    {/* <FormMessage message={this.getInputError("message")} /> */}
+                    </div>
 
-  )
-}
-return null;
-})()}
+                  )
+                }
+                return null;
+              })()}
 
-          <table cellPadding="15" > 
-          <tbody>
+              <table cellPadding="15" >
+                <tbody>
 
-          <tr>
-          <td>Enter UserId:</td>
-          <td style={{width:"61%"}}>
-          <input type="text" id="t1" placeholder="Enter UserName" name="userid" value={this.state.form.userid} onChange={(event) => this.changeFormState(event)}/>
-          </td>
-          </tr>
-          <tr>
-          <td colSpan="2" style={{textAlign:"center",padding:"0px 0px" ,color:"red"}}> {this.state.inputError.userid}</td>          
-          </tr>
-          
-          <tr>
-          <td>Enter Password:</td>
-          <td><input type="number" id="t1"  placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)}/></td>
-          </tr>
-          <tr>
-          <td colSpan="2" style={{textAlign:"center",padding:"0px 0px",color:"red"}}> {this.state.inputError.password}</td>          
-          </tr>
-                <tr>
-          <td colSpan="2" style={{textAlign:"center"}}> <button type='button' onClick={(event) => this.login(event)} className='B'>Login</button> </td>
-          
-          </tr>
-          </tbody>
-          </table>
-          </form>
+                  <tr>
+                    <td>Enter UserId:</td>
+                    <td style={{ width: "61%" }}>
+                      <input type="text" id="t1" placeholder="Enter UserName" name="loginId" value={this.state.form.loginId} onChange={(event) => this.changeFormState(event)} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px", color: "#dfb007" }}> {this.state.inputError.loginId}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Enter Password:</td>
+                    <td><input type="number" id="t1" placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} /></td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px", color: "#dfb007" }}> {this.state.inputError.password}</td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" style={{ textAlign: "center" }}> <button type='button' onClick={(event) => this.login(event)} className='B'>Login</button> </td>
+                  </tr>
+                </tbody>
+              </table>                     
+              </form>
           </div>
-          </center>
-            </>
-        )
-    }
+        </center>
+      </>
+    )
+  }
 }

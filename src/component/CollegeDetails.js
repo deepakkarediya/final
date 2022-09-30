@@ -15,7 +15,8 @@ export default class CollegeDetails extends Base {
         state: '',
         phoneNo: '',
         message: '',
-        error: ''
+        error: '',
+        type:''
 
       },
       form: {
@@ -72,6 +73,7 @@ export default class CollegeDetails extends Base {
           this.changeInputError("address", "")
           this.changeInputError("city", "")
           this.changeInputError("state", "")
+          this.changeInputError("type", "success");
 
 
         }
@@ -81,19 +83,15 @@ export default class CollegeDetails extends Base {
   render() {
     return (
       <>
-        {(() => {
-          if (this.state.inputError.message) {
-            return (
-
-              <div   style={{height: "52px",marginTop: "1px"}} className="alert alert-success" role="alert">
-
-                <div > <FormMessage error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-              </div>
-            )
-
-          }
-        })()
-        }
+         {(()=>{if(this.state.inputError.message){
+              return(
+           
+            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+                 
+              )
+            }
+            })()
+            }
         <center>
           <div id="data">
             <form>
