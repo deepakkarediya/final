@@ -53,7 +53,7 @@ export default class MarkSheetList extends Base {
             }
             })()
             }
-                <div style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
+                <div style={{margin: '65px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
                             <div className="p-3 ">  <input name="rollNo" placeholder='Search by RollNo'
@@ -100,11 +100,11 @@ export default class MarkSheetList extends Base {
                         }
                     </tbody>
                 </table>
-                <div style={{    margin: '11px 300px'}}>
+                {/* <div style={{    margin: '11px 300px'}}>
 
                 <button className='btn btn-primary' onClick={this.previousClick}>Previous</button>&nbsp;
                 <button  className='btn btn-primary' onClick={this.nextClick}>Next</button>
-                </div>
+                </div> */}
             </>
         )
     }

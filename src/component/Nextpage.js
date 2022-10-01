@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './Navbar'
+import Navbar2 from './Navbar2'
 import {BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import Addstudent from './Addstudent';
 import AddMarkSheet from './AddMarkSheet';
@@ -17,7 +17,7 @@ export default function Nextpage() {
   return (
     <div>
   <Router>
-    <Navbar/>
+    <Navbar2/>
     <Switch>
     
     <Route exact path="/addstudent" component={Addstudent} />

@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import ReactDOM from 'react-dom/client';
-
 import Base from './Base';
-import FormMessage from './FormMessage';
 import Nextpage from './Nextpage';
 
 
@@ -13,7 +11,7 @@ export default class Login extends Base {
 
     this.state = {
       inputError: {
-        type:'',
+        type: '',
         message: "",
         error: "",
         loginId: '',
@@ -26,41 +24,35 @@ export default class Login extends Base {
       },
       list: []
     }
-   
+
   }
-
- 
-
-
   login() {
-
     axios.post("http://api.sunilos.com:9080/ORSP10/Auth/login",this.state.form)
-    .then((res)=>{
-     console.log(res)
-       if(res.data.success===true){
-         const root = ReactDOM.createRoot(document.getElementById('root'));
-         root.render(<Nextpage />);
+      .then((res) => {
+        console.log(res)
+        if (res.data.success === true) {
+             alert("login successfully")
         
-      }
-     if(res.data.result.inputerror){
-      this.setState({inputError:res.data.result.inputerror})
-     }
-     if(res.data.result.message){
-      this.setState({inputError:res.data.result.message})
+          const root = ReactDOM.createRoot(document.getElementById('root'));
+          root.render(<Nextpage/>);
+        }
+        if (res.data.result.inputerror) {
+          this.setState({ inputError: res.data.result.inputerror })
+        }
+        else {
+          this.changeInputError("error", "true");
+          this.changeInputError("message", "Invalid Id or password");
+          this.changeInputError("type", "danger");
+          this.changeInputError("loginId", "");
+          this.changeInputError("password", "");
+        }
+      })
 
-      this.changeInputError("error","true");
-     }
-    })
-   
-    
-     
   }
   render() {
 
     return (
-
       <>
-
         <center>
           <div id="data">
             <form>
@@ -74,9 +66,8 @@ export default class Login extends Base {
 
                 if (this.state.inputError.error) {
                   return (
-                    <div style={{ color: "#dfb007" }}> 
+                    <div style={{ color: "#dfb007" }}>
                       <h4>{this.state.inputError.message}</h4>
-                    {/* <FormMessage message={this.getInputError("message")} /> */}
                     </div>
 
                   )
@@ -86,7 +77,6 @@ export default class Login extends Base {
 
               <table cellPadding="15" >
                 <tbody>
-
                   <tr>
                     <td>Enter UserId:</td>
                     <td style={{ width: "61%" }}>
@@ -108,8 +98,8 @@ export default class Login extends Base {
                     <td colSpan="2" style={{ textAlign: "center" }}> <button type='button' onClick={(event) => this.login(event)} className='B'>Login</button> </td>
                   </tr>
                 </tbody>
-              </table>                     
-              </form>
+              </table>
+            </form>
           </div>
         </center>
       </>

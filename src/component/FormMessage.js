@@ -12,30 +12,15 @@ export default class FormMessage extends Component {
 }
   render() {
     return (
-      <>    
+      <>  
+      {/* {
 
+      alert("Registration successfully")  
+      } */}
           <div className={`alert alert-${this.props.type} alert-dismissible fade show`} role="alert">
             <strong>{this.capitalize(this.props.type)}</strong>:{this.props.message}
            </div>
-  
-
-
-        {/* {(() => {
-          if (this.props.error === "true") {
-            return (
-              <h3 style={{ color: "red" }}>{this.props.message}</h3>
-            )
-          }
-          if (this.props.error === "false") {
-            return (
-              <h5 style={{ color: "green" }}>{this.props.message}</h5>
-              
-                
-              
-            )
-          }
-        })()} */}
-      </>
+          </>
     )
   }
 }

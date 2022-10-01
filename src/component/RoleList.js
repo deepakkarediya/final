@@ -48,7 +48,7 @@ export default class RoleList extends Base {
             }
             })()
             }
-                <div style={{margin: '5px'}} className="container overflow-hidden text-center my-5">
+                <div style={{margin: '65px'}} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
                             <div className="p-3 ">  <input name="discription" placeholder='Search by discription'

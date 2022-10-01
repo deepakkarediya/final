@@ -30,8 +30,7 @@ export default class Addstudent extends Base {
     }
     if (this.props.match.params.sid) {
       this.getdata();
-
-    }
+  }
 
   }
   reset() {
@@ -59,8 +58,6 @@ export default class Addstudent extends Base {
 
       })
   }
-
-
   save() {
     axios.post("http://api.sunilos.com:9080/ORSP10/Student/save", this.state.form)
       .then((res) => {
@@ -79,9 +76,6 @@ export default class Addstudent extends Base {
           this.changeInputError("email", "");
           this.changeInputError("collegeId", "");
           this.changeInputError("type", "success");
-
-
-
         }
 
       });
@@ -122,11 +116,7 @@ export default class Addstudent extends Base {
               })()
 
               }
-
-
-
-
-              <table cellPadding="15" >
+           <table cellPadding="15" >
                 <tbody>
 
                   <tr>
