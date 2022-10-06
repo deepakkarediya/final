@@ -35,7 +35,12 @@ export default class AddRole extends Base {
         name: '',
         discription: ''
       }
-    })
+    });
+    this.changeInputError("message", "");
+    this.changeInputError("error", "");
+    this.changeInputError("name", "");
+    this.changeInputError("discription", "");
+    this.changeInputError("type", "");
   }
   getdata() {
     let id = this.props.match.params.rid;
@@ -76,28 +81,27 @@ export default class AddRole extends Base {
         {(() => {
           if (this.state.inputError.message) {
             return (
-
-              <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-
+              <div>
+                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
+               
+              </div>
             )
           }
+
         })()
         }
-        <center>
-          <div id="data">
-            <form>
-              {(() => {
+        {(() => {
                 if (this.props.match.params.rid) {
                   return (
 
-                    <h2>Update Role</h2>
+                    <h2 style={{marginLeft:'555px',color:'white'}}>Update Role</h2>
                   )
                 }
 
                 if (!this.props.match.params.rid) {
                   return (
 
-                    <h4>ADD Role</h4>
+                    <h4 style={{marginLeft:'555px',color:'white'}}>Add Role</h4>
                   )
                 }
 
@@ -105,40 +109,30 @@ export default class AddRole extends Base {
               })()
 
               }
+             
+        <div className="data" >
+          <form>
+            <table>
+           
 
+              <label>Name:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('name')} /> </div>
+              
+              <label>Discription: </label>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="text" id="t1" placeholder="Enter discription" name="discription" value={this.state.form.discription} onChange={this.changeFormState} /> </p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('discription')} /></div>
+          
+              <br></br>
+              <button type='button' style={{ marginRight: '67px',width: "110px" ,marginLeft: '26px'}} onClick={(event) => this.save(event)} className='B'>Add Role</button>
+              <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
 
+            </table>
+            <br></br>
+          </form>
 
+        </div>
 
-              <table cellPadding="15" >
-                <tbody>
-
-                  <tr>
-                    <td>Name:</td>
-                    <td style={{ width: "73%" }}>
-                      <input type="text" id="t1" placeholder="Enter Name" name="name" value={this.state.form.name} onChange={this.changeFormState} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}> <FormError errorName={this.getInputError('name')} /></td>
-                  </tr>
-
-                  <tr>
-                    <td>Discription:</td>
-                    <td><input type="text" id="t1" placeholder="Enter discription" name="discription" value={this.state.form.discription} onChange={this.changeFormState} /></td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}> <FormError errorName={this.getInputError('discription')} /></td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: "center" }}> <button type='button' onClick={(event) => this.save(event)} className='B' style={{ width: "81px" }}>Add Role</button> </td>
-                    <td> <input type="reset" onClick={(event) => this.reset(event)} className="B" /></td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </form>
-          </div>
-        </center>
       </>
     )
   }

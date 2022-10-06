@@ -11,7 +11,7 @@ export default class FormError extends Component {
       <>
         {(()=>{
                 return(
-                <h6 style={{color:"#76ed0ad1"}}>{this.props.errorName}</h6>
+                <div style={{color: 'rgb(255 100 114)'}}>{this.props.errorName}</div>
                 )
                    })()}
       </>

@@ -53,6 +53,15 @@ export default class AddMarkSheet extends Base  {
     
           }
         });
+        this.changeInputError("error", "");
+        this.changeInputError("message", "");
+        this.changeInputError("rollNo", "")
+        this.changeInputError("name", "")
+        this.changeInputError("physics", "")
+        this.changeInputError("chemistry", "")
+        this.changeInputError("maths", "")
+        this.changeInputError("studentId", "")
+        this.changeInputError("type", "")
 
       }
       getdata() {
@@ -91,7 +100,7 @@ export default class AddMarkSheet extends Base  {
         return (
 
           <>
-           {(()=>{if(this.state.inputError.message){
+           {/* {(()=>{if(this.state.inputError.message){
               return(
            
             <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
@@ -183,7 +192,74 @@ export default class AddMarkSheet extends Base  {
           </table>
           </form>
           </div>
-          </center>
+          </center> */}
+          {(() => {
+          if (this.state.inputError.message) {
+            return (
+              <div>
+                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
+               
+              </div>
+            )
+          }
+
+        })()
+        }
+        {(() => {
+                if (this.props.match.params.pid) {
+                  return (
+
+                    <h2 style={{marginLeft:'555px',color:'white'}}>Update Marksheet</h2>
+                  )
+                }
+
+                if (!this.props.match.params.pid) {
+                  return (
+
+                    <h4 style={{marginLeft:'555px',color:'white'}}>Add Marksheet</h4>
+                  )
+                }
+
+
+              })()
+
+              }
+              {/* <h4 align="center" style={{marginBottom: '0px',textDecorationLine:'underline',marginLeft: '478px',width:'356px',color:'white'}}>Student Registration</h4> */}
+        <div className="data" >
+          <form>
+            <table>
+           
+              <label>RollNo: </label>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="number" id="t1" placeholder="Enter RollNo" name="rollNo" value={this.state.form.rollNo} onChange={this.changeFormState} /> </p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('rollNo')} /></div>
+
+              <label>Name :</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('name')} /> </div>
+              
+              <label>Physics:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="number" id="t1" placeholder="Enter physics marks" name="physics" value={this.state.form.physics} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('physics')} /></div>
+              
+              <label>chemistry:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="number" id="t1" placeholder="Enter chemistry marks" name="chemistry" value={this.state.form.chemistry} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px' }}><FormError errorName={this.getInputError('chemistry')} /> </div>
+              
+              <label>Maths:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="number" id="t1" placeholder="Enter maths marks" name="maths" value={this.state.form.maths} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('maths')} /> </div>
+
+              <br></br>
+              {/* <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button> */}
+              <button type='button' style={{ marginRight: '67px',width: "110px" ,marginLeft: '26px'}} onClick={(event) => this.save(event)} className='B'>Add Student</button>
+              <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
+
+            </table>
+            <br></br>
+          </form>
+
+        </div>
+
             </>
         )
     }

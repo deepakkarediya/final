@@ -13,11 +13,12 @@ import AddUser from './AddUser';
 import UserList from './UserList';
 import StudentList from './StudentList';
 
-export default function Nextpage() {
+export default function Nextpage(props) {
+
   return (
     <div>
   <Router>
-    <Navbar2/>
+    <Navbar2 user={props.userid}/>
     <Switch>
     
     <Route exact path="/addstudent" component={Addstudent} />

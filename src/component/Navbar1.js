@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {AiOutlineHome} from "react-icons/ai";
 
 export default class Navbar1 extends Component {
     render() {
@@ -9,6 +8,7 @@ export default class Navbar1 extends Component {
             <>
                 <nav style={{background:' linear-gradient(181deg, #71769f, transparent)'}} className="navbar navbar-expand-lg bg-light">
                     <div className="container-fluid">
+                    <span style={{paddingRight: '0px' ,paddingLeft: '20px' ,marginTop:'-3px'}}><AiOutlineHome/></span>
                         <Link className="navbar-brand" to="/">Home</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>

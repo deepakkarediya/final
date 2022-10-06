@@ -22,10 +22,10 @@ export default class CollegeDetails extends Base {
       form: {
         id: '',
         name: '',
+        phoneNo: '',
         address: '',
         city: '',
         state: '',
-        phoneNo: ''
 
       },
 
@@ -41,13 +41,21 @@ export default class CollegeDetails extends Base {
       form: {
         id: '',
         name: '',
+        phoneNo: '',
         address: '',
         city: '',
         state: '',
-        phoneNo: ''
 
       },
-    })
+    });
+    this.changeInputError("error", "");
+          this.changeInputError("message", "");
+          this.changeInputError("name", "")
+          this.changeInputError("phoneNo", "")
+          this.changeInputError("address", "")
+          this.changeInputError("city", "")
+          this.changeInputError("state", "")
+          this.changeInputError("type", "");
   }
   getdata() {
     let id = this.props.match.params.cid;
@@ -83,30 +91,30 @@ export default class CollegeDetails extends Base {
   render() {
     return (
       <>
-         {(()=>{if(this.state.inputError.message){
-              return(
-           
-            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-                 
-              )
-            }
-            })()
-            }
-        <center>
-          <div id="data">
-            <form>
-              {(() => {
+        {(() => {
+          if (this.state.inputError.message) {
+            return (
+              <div>
+                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
+               
+              </div>
+            )
+          }
+
+        })()
+        }
+        {(() => {
                 if (this.props.match.params.cid) {
                   return (
 
-                    <h2>Update College</h2>
+                    <h2 style={{marginLeft:'555px',color:'white'}}>Update college</h2>
                   )
                 }
 
                 if (!this.props.match.params.cid) {
                   return (
 
-                    <h4>ADD College </h4>
+                    <h4 style={{marginLeft:'555px',color:'white'}}>Add college</h4>
                   )
                 }
 
@@ -114,61 +122,42 @@ export default class CollegeDetails extends Base {
               })()
 
               }
+             
+        <div className="data" >
+          <form>
+            <table>
+           
 
+              <label>Name:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('name')} /> </div>
+              
+              <label>PhoneNo: </label>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="number" id="t1" placeholder="Enter PhoneNo" name="phoneNo" value={this.state.form.phoneNo} onChange={this.changeFormState} /> </p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('phoneNo')} /></div>
+              
+              <label>Address:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter Address" name="address" value={this.state.form.address} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('address')} /></div>
+              
+              <label>City:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter city" name="city" value={this.state.form.city} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px' }}><FormError errorName={this.getInputError('city')} /> </div>
+              
+              <label>State:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter state" name="state" value={this.state.form.state} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('state')} /> </div>
 
+              <br></br>
+              {/* <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button> */}
+              <button type='button' style={{ marginRight: '67px',width: "110px" ,marginLeft: '26px'}} onClick={(event) => this.save(event)} className='B'>Add college</button>
+              <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
 
+            </table>
+            <br></br>
+          </form>
 
-              <table cellPadding="15" >
-                <tbody>
-
-                  <tr>
-                    <td>Name:</td>
-                    <td style={{ width: "73%" }}>
-                      <input type="text" id="t1" placeholder="Enter Name" name="name" value={this.state.form.name} onChange={this.changeFormState} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}> <FormError errorName={this.getInputError('name')} /></td>
-                  </tr>
-
-                  <tr>
-                    <td>PhoneNo:</td>
-                    <td><input type="number" id="t1" placeholder="Enter phoneNo" name="phoneNo" value={this.state.form.phoneNo} onChange={this.changeFormState} /></td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}> <FormError errorName={this.getInputError('phoneNo')} /></td>
-                  </tr>
-                  <tr>
-                    <td>Address:</td>
-                    <td><input type="text" id="t1" placeholder="Enter Address" name="address" value={this.state.form.address} onChange={this.changeFormState} /></td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}><FormError errorName={this.getInputError('address')} /></td>
-                  </tr>
-                  <tr>
-                    <td>city:</td>
-                    <td><input type="text" id="t1" placeholder="Enter city" name="city" value={this.state.form.city} onChange={this.changeFormState} /></td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}><FormError errorName={this.getInputError('city')} /></td>
-                  </tr>
-                  <tr>
-                    <td>state:</td>
-                    <td><input type="text" id="t1" placeholder="Enter state" name="state" value={this.state.form.state} onChange={this.changeFormState} /></td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2" style={{ textAlign: "center", padding: "0px 0px" }}>  <FormError errorName={this.getInputError('state')} /></td>
-                  </tr>
-                  <tr>
-          <td style={{textAlign:"center"}}> <button type='button' onClick={(event) => this.save(event)} className='B'>Save</button> </td>
-          <td> <input type="reset" onClick={(event) => this.reset(event)} className="B"/></td>
-          </tr>
-         
-               </tbody>
-              </table>
-            </form>
-          </div>
-        </center>
+        </div>
       </>
     )
   }

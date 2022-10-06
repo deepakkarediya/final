@@ -34,16 +34,14 @@ export default class Addstudent extends Base {
 
   }
   reset() {
-    this.setState({
-      form: {
-        firstName: '',
-        lastName: '',
-        loginId: '',
-        roleId: '',
-        collegeId: ''
-
-      }
-    });
+    this.setState({ form: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      mobileNo: '',
+      collegeId: ''
+    }});
+   
     this.changeInputError("firstName", "");
     this.changeInputError("lastName", "");
     this.changeInputError("mobileNo", "");
@@ -84,7 +82,7 @@ export default class Addstudent extends Base {
     return (
       <>
 
-        {(() => {
+        {/* {(() => {
           if (this.state.inputError.message) {
             return (
 
@@ -166,7 +164,73 @@ export default class Addstudent extends Base {
               </table>
             </form>
           </div>
-        </center>
+        </center> */}
+        {(() => {
+          if (this.state.inputError.message) {
+            return (
+              <div>
+                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
+               
+              </div>
+            )
+          }
+
+        })()
+        }
+        {(() => {
+                if (this.props.match.params.sid) {
+                  return (
+
+                    <h2 style={{marginLeft:'555px',color:'white'}}>Update Student</h2>
+                  )
+                }
+
+                if (!this.props.match.params.sid) {
+                  return (
+
+                    <h4 style={{marginLeft:'555px',color:'white'}}>Add Student </h4>
+                  )
+                }
+
+
+              })()
+
+              }
+              {/* <h4 align="center" style={{marginBottom: '0px',textDecorationLine:'underline',marginLeft: '478px',width:'356px',color:'white'}}>Student Registration</h4> */}
+        <div className="data" >
+          <form>
+            <table>
+           
+              <label>FirstName : </label>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="text" id="t1" placeholder="Enter Firstname" name="firstName" value={this.state.form.firstName} onChange={this.changeFormState} /> </p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('firstName')} /></div>
+
+              <label>LastName :</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter Lastname" name="lastName" value={this.state.form.lastName} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('lastName')} /> </div>
+              
+              <label>emailId:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter emailId" name="email" value={this.state.form.email} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('email')} /></div>
+              
+              <label>MobileNo:</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter mobileNo" name="mobileNo" value={this.state.form.mobileNo} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px' }}><FormError errorName={this.getInputError('mobileNo')} /> </div>
+              
+              <label>collegeId :</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="number" id="t1" placeholder="Enter collegeId" name="collegeId" value={this.state.form.collegeId} onChange={this.changeFormState} /></p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('collegeId')} /> </div>
+
+              <br></br>
+              {/* <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button> */}
+              <button type='button' style={{ marginRight: '67px',width: "110px" ,marginLeft: '26px'}} onClick={(event) => this.save(event)} className='B'>Add Student</button>
+              <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
+
+            </table>
+            <br></br>
+          </form>
+
+        </div>
       </>
     )
   }

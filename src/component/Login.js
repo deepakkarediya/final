@@ -26,15 +26,26 @@ export default class Login extends Base {
     }
 
   }
+  reset(){
+    this.setState({ form: {
+      loginId: "",
+      password: ""
+    }})
+    this.changeInputError("error", "");
+          this.changeInputError("message", "");
+          this.changeInputError("type", "");
+          this.changeInputError("loginId", "");
+          this.changeInputError("password", "");
+  }
   login() {
-    axios.post("http://api.sunilos.com:9080/ORSP10/Auth/login",this.state.form)
+    axios.post("http://api.sunilos.com:9080/ORSP10/Auth/login", this.state.form)
       .then((res) => {
         console.log(res)
         if (res.data.success === true) {
-             alert("login successfully")
-        
+         alert("login successfully")
+
           const root = ReactDOM.createRoot(document.getElementById('root'));
-          root.render(<Nextpage/>);
+          root.render(<Nextpage userid={this.state.form.loginId} />);
         }
         if (res.data.result.inputerror) {
           this.setState({ inputError: res.data.result.inputerror })
@@ -53,7 +64,7 @@ export default class Login extends Base {
 
     return (
       <>
-        <center>
+        {/* <center>
           <div id="data">
             <form>
               <h2 style={{
@@ -101,7 +112,43 @@ export default class Login extends Base {
               </table>
             </form>
           </div>
-        </center>
+        </center> */}
+         <h2 align="center" style={{marginBottom: '1px',textDecorationLine:'underline',marginLeft: '427px',width:'356px',color:'white'}}>Login</h2>
+        <div className="data" >
+          <form>
+            <table>
+              <div style={{ color: 'rgb(255 100 114)',height: '40px', width: '240px',fontSize:'24px'}}>
+                      {this.state.inputError.message}
+                    </div>
+              {/* {(() => {
+
+                if (this.state.inputError.error) {
+                  return (
+                    <div style={{ color: 'rgb(255 100 114)',height: '40px', width: '240px',fontSize:'24px' }}>
+                      {this.state.inputError.message}
+                    </div>
+
+                  )
+                }
+                return null;
+              })()}  */}
+              <label>Email ID : </label>
+              <p style={{marginBottom: '0rem'}}><input style={{width: '230px'}} id='t1' placeholder="Enter Email ID" name="loginId" value={this.state.form.loginId} onChange={(event) => this.changeFormState(event)} />  </p>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '18px',width:'199px'}}>{this.state.inputError.loginId}  </div>
+
+              <label>  Password :</label>
+              <p style={{marginBottom: '0rem'}}><input style={{width: '230px'}} type="text" id='t1' placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} /></p>
+              <div style={{ textAlign: "center",marginLeft:"-11px", color: 'rgb(255 100 114)',height: '20px',width: '222px' }}>{this.state.inputError.password}  </div>
+
+              <br></br>
+              <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button>
+              <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
+
+            </table>
+            <br></br>
+          </form>
+
+        </div>
       </>
     )
   }
