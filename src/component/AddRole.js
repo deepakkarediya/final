@@ -94,14 +94,14 @@ export default class AddRole extends Base {
                 if (this.props.match.params.rid) {
                   return (
 
-                    <h2 style={{marginLeft:'555px',color:'white'}}>Update Role</h2>
+                    <h2 style={{marginLeft:'614px',marginTop:"20px",color:'white'}}>Update Role</h2>
                   )
                 }
 
                 if (!this.props.match.params.rid) {
                   return (
 
-                    <h4 style={{marginLeft:'555px',color:'white'}}>Add Role</h4>
+                    <h4 style={{marginLeft:'614px',marginTop:"20px",color:'white'}}>Add Role</h4>
                   )
                 }
 

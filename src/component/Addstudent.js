@@ -181,14 +181,14 @@ export default class Addstudent extends Base {
                 if (this.props.match.params.sid) {
                   return (
 
-                    <h2 style={{marginLeft:'555px',color:'white'}}>Update Student</h2>
+                    <h2 style={{marginLeft:'614px',marginTop:"20px", color:'white'}}>Update Student</h2>
                   )
                 }
 
                 if (!this.props.match.params.sid) {
                   return (
 
-                    <h4 style={{marginLeft:'555px',color:'white'}}>Add Student </h4>
+                    <h4 style={{marginLeft:'614px',marginTop:"20px",color:'white'}}>Add Student </h4>
                   )
                 }
 

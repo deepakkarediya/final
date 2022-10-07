@@ -22,15 +22,17 @@ export default class Login extends Base {
         loginId: "",
         password: ""
       },
-      list: []
+    
     }
 
   }
   reset(){
-    this.setState({ form: {
+    this.setState({ 
+      form: {
       loginId: "",
       password: ""
-    }})
+    }});
+   
     this.changeInputError("error", "");
           this.changeInputError("message", "");
           this.changeInputError("type", "");
@@ -42,8 +44,9 @@ export default class Login extends Base {
       .then((res) => {
         console.log(res)
         if (res.data.success === true) {
-         alert("login successfully")
-
+         alert("login successfully")   
+         
+        // localStorage.setItem("name", this.state.form.loginId);     
           const root = ReactDOM.createRoot(document.getElementById('root'));
           root.render(<Nextpage userid={this.state.form.loginId} />);
         }
@@ -113,7 +116,7 @@ export default class Login extends Base {
             </form>
           </div>
         </center> */}
-         <h2 align="center" style={{marginBottom: '1px',textDecorationLine:'underline',marginLeft: '427px',width:'356px',color:'white'}}>Login</h2>
+         <h2 align="center" style={{marginBottom: '1px',textDecorationLine:'underline',marginLeft: '466px',width:'356px',color:'white'}}>Login</h2>
         <div className="data" >
           <form>
             <table>

@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 export default class Navbar2 extends Component {
- 
+ name= localStorage.getItem('name');
   logout(){
       // window.localStorage.clear();
       window.location.href = "/";
@@ -25,20 +25,20 @@ export default class Navbar2 extends Component {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     <li className="nav-item "> <img src={logo} alt="...." style={{width:"170px",height: "55px",margin: "0px 75px"}}/></li>
 
-        <li style={{ marginTop: "30px"}}><span ><AiFillHome/></span></li>
+        {/* <li style={{ marginTop: "30px"}}><span ><AiFillHome/></span></li> */}
         
         <li className="nav-item" style={{ marginTop: "24px"}}>
-        <Link className="nav-link active" aria-current="page" to='/' >Home</Link>
+        <Link className="nav-link active" aria-current="page" to='/' ><AiFillHome/>Home</Link>
         </li>
         <li className="nav-item dropdown" style={{ marginTop: "24px"}}>
           <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Student
           </a>
           <ul className="dropdown-menu">
-        
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/addstudent">AddStudent</Link></li>
+          {/* style={{display: 'contents'}} */}
+          <li><Link  className="dropdown-item" to="/addstudent"><AiFillCaretRight/>AddStudent</Link></li>
           <li><hr className="dropdown-divider"/></li>
-          <li><AiFillCaretRight/><Link style={{display: 'contents'}} className="dropdown-item" to="/studentlist">StudentList</Link></li>
+          <li><Link  className="dropdown-item" to="/studentlist"><AiFillCaretRight/>StudentList</Link></li>
          
           </ul>
         </li>
@@ -48,9 +48,9 @@ export default class Navbar2 extends Component {
             Marksheet
           </a>
           <ul className="dropdown-menu">
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/addmarksheet">AddMarkSheet</Link></li>
+          <li><Link className="dropdown-item" to="/addmarksheet"><AiFillCaretRight/>AddMarkSheet</Link></li>
           <li><hr className="dropdown-divider"/></li>
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/marksheetlist">MarkSheet list</Link></li>
+          <li><Link className="dropdown-item" to="/marksheetlist"><AiFillCaretRight/>MarkSheet list</Link></li>
          
           </ul>
         </li>
@@ -60,9 +60,9 @@ export default class Navbar2 extends Component {
             College
           </a>
           <ul className="dropdown-menu">
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item " to="/collegedetails">AddCollege</Link></li>
+          <li><Link  style={{display: 'contents'}} className="dropdown-item " to="/collegedetails"><AiFillCaretRight/>AddCollege</Link></li>
           <li><hr className="dropdown-divider"/></li>
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/collegelist">College list</Link></li>
+          <li><Link  style={{display: 'contents'}} className="dropdown-item" to="/collegelist"><AiFillCaretRight/>College list</Link></li>
          
          
           </ul>
@@ -72,9 +72,9 @@ export default class Navbar2 extends Component {
             Role
           </a>
           <ul className="dropdown-menu">
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item " to="/addrole">Add Role</Link></li>
+          <li><Link  className="dropdown-item " to="/addrole"><AiFillCaretRight/>Add Role</Link></li>
           <li><hr className="dropdown-divider"/></li>
-         <li><AiFillCaretRight/><Link style={{display: 'contents'}} className="dropdown-item" to="/rolelist">Role list</Link></li>
+         <li><Link  className="dropdown-item" to="/rolelist"><AiFillCaretRight/>Role list</Link></li>
                    
           </ul>
         </li>
@@ -83,17 +83,17 @@ export default class Navbar2 extends Component {
             User
           </a>
           <ul className="dropdown-menu">
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/adduser">Add User</Link></li>
+          <li><Link  className="dropdown-item" to="/adduser"><AiFillCaretRight/>Add User</Link></li>
           <li><hr className="dropdown-divider"/></li>
-          <li><AiFillCaretRight/><Link  style={{display: 'contents'}} className="dropdown-item" to="/userlist">User List</Link></li>
+          <li><Link  className="dropdown-item" to="/userlist"><AiFillCaretRight/>User List</Link></li>
           
           </ul>
         </li>
-        <li style={{textDecorationLine:'underline', marginTop: '31px',  width: '350px'}}>{this.props.user}</li>
+        <li style={{textDecorationLine:'underline', marginTop: '31px',  width: '350px',fontWeight: 'bolder'}}>{this.props.user}</li>
        
-        <li style={{marginTop:'31px', marginLeft: '82px'}}><AiOutlineLogout/></li>
+        {/* <li style={{marginTop:'31px', marginLeft: '82px'}}></li> */}
         <li>
-        <Link style={{ marginTop: "24px",color:'red',fontWeight: '600'}} className="nav-link " to="" onClick={this.logout}>Logout</Link>
+        <Link style={{ marginTop: "24px", marginLeft: '82px',fontWeight: 'bolder'}} className="nav-link "  onClick={this.logout}><AiOutlineLogout/>Logout</Link>
         </li>
          
        </ul>

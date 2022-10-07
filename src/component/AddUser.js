@@ -186,7 +186,7 @@ export default class AddUser extends Base {
 
         })()
         }
-              <h4 align="center" style={{marginBottom: '0px',textDecorationLine:'underline',marginLeft: '478px',width:'356px',color:'white'}}>Student Registration</h4>
+              <h4 align="center" style={{marginBottom: '0px',marginLeft: '506px',marginTop:"20px",width:'356px',color:'white'}}>Student Registration</h4>
         <div className="data" >
           <form>
             <table>
