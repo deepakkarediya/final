@@ -69,7 +69,7 @@ export default class CollegeDetails extends Base {
   save() {
     axios.post("http://api.sunilos.com:9080/ORSP10/College/save", this.state.form)
       .then((res) => {
-        // console.log(res);
+      
         if (res.data.result.inputerror) {
           this.setState({ inputError: res.data.result.inputerror });
           this.changeInputError("error", "true");
@@ -149,7 +149,6 @@ export default class CollegeDetails extends Base {
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('state')} /> </div>
 
               <br></br>
-              {/* <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button> */}
               <button type='button' style={{ marginRight: '67px',width: "110px" ,marginLeft: '26px'}} onClick={(event) => this.save(event)} className='B'>Add college</button>
               <button type='button' onClick={(event) => this.reset(event)} className='B'>reset</button>
 

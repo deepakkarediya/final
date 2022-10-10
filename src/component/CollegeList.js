@@ -20,7 +20,6 @@ export default class CollegeList extends Base {
     search() {
         axios.post("http://api.sunilos.com:9080/ORSP10/College/search", this.state)
             .then((res) => {
-                // console.log(res);
                 this.setState({ list: res.data.result.data });
             });
     }

@@ -100,11 +100,7 @@ export default class MarkSheetList extends Base {
                         }
                     </tbody>
                 </table>
-                {/* <div style={{    margin: '11px 300px'}}>
-
-                <button className='btn btn-primary' onClick={this.previousClick}>Previous</button>&nbsp;
-                <button  className='btn btn-primary' onClick={this.nextClick}>Next</button>
-                </div> */}
+              
             </>
         )
     }
