@@ -98,7 +98,7 @@ export default class AddUser extends Base {
 
         })()
         }
-              <h4 align="center" style={{marginBottom: '0px',marginLeft: '506px',marginTop:"20px",width:'356px',color:'white'}}>Student Registration</h4>
+              <h4 align="center" style={{marginBottom: '0px',marginLeft: '490px',marginTop:"20px",width:'356px',color:'white'}}>User Registration</h4>
         <div className="data" >
           <form>
             <table style={{margin:'15px'}}>
@@ -111,12 +111,12 @@ export default class AddUser extends Base {
               <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter Lastname" name="lastName" value={this.state.form.lastName} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('lastName')} /> </div>
               
-              <label>emailId:</label>
+              <label>Email ID:</label>
               <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter LoginId" name="loginId" value={this.state.form.loginId} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('loginId')} /></div>
               
               <label>Password :</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter password" name="password" value={this.state.form.password} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="password" id="t1" placeholder="Enter password" name="password" value={this.state.form.password} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px' }}><FormError errorName={this.getInputError('password')} /> </div>
               
               <label>RoleId :</label>

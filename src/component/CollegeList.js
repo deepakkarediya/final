@@ -38,19 +38,20 @@ export default class CollegeList extends Base {
     render() {
         return (
             <>
-            {(()=>{if(this.state.inputError.message){
-              return(
-           
-            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-                 
-              )
-            }
-            })()
-            }
-                <div style={{margin: '65px'}} className="container overflow-hidden text-center my-5">
+                {(() => {
+                    if (this.state.inputError.message) {
+                        return (
+
+                            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+
+                        )
+                    }
+                })()
+                }
+                <div style={{ margin: '65px' }} className="container overflow-hidden text-center my-5">
                     <div className="row gx-2">
                         <div className="col text-end">
-                            <div className="p-3 ">  <input name="phoneNo"  type="number" placeholder='Search by phoneNo'
+                            <div className="p-3 ">  <input name="phoneNo" type="number" placeholder='Search by phoneNo'
                                 value={this.state.phoneNo}
                                 onChange={(event) => this.changeState(event)} /></div>
                         </div>
@@ -82,7 +83,7 @@ export default class CollegeList extends Base {
                         {this.state.list.map((ele, i) => (
                             <tr key={i}>
 
-                                <td>{i+1}</td>
+                                <td>{i + 1}</td>
 
                                 <td>{ele.name}</td>
                                 <td>{ele.phoneNo}</td>
@@ -90,7 +91,7 @@ export default class CollegeList extends Base {
                                 <td>{ele.city}</td>
                                 <td>{ele.state}</td>
                                 <td> <button className="btn btn-primary " type="button" onClick={(event) => this.delete(ele.id)}>Delete</button> </td>
-                                <td><Link to={'/collegedetails/' + ele.id}>Edit</Link></td>
+                                <td><button style={{ border:"none",borderRadius: '7px', marginLeft: '18px', padding: '5px 19px', background: '#efff00f2' }} type="button"><Link style={{color:"black",textDecoration:"none"}} to={'/collegedetails/' + ele.id}>Edit</Link></button></td>
                             </tr>
                         ))
                         }

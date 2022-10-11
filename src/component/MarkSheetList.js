@@ -94,7 +94,8 @@ export default class MarkSheetList extends Base {
                                 <td>{ele.chemistry}</td>
                                 <td>{ele.maths}</td>
                                 <td> <button className="btn btn-primary " type="button" onClick={(event) => this.delete(ele.id)}>Delete</button> </td>
-                                <td><Link to={'/addmarksheet/' + ele.id}>Edit</Link></td>
+                                {/* <td><Link to={'/addmarksheet/' + ele.id}>Edit</Link></td> */}
+                                <td><button style={{ border:"none",borderRadius: '7px', marginLeft: '18px', padding: '5px 19px', background: '#efff00f2' }} type="button"><Link style={{color:"black",textDecoration:"none"}} to={'/addmarksheet/' + ele.id}>Edit</Link></button></td>
                             </tr>
                         ))
                         }

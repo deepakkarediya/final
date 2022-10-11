@@ -46,8 +46,10 @@ export default class Login extends Base {
         console.log(res)
         if (res.data.success === true) {
           alert("login successfully")
+          
           const root = ReactDOM.createRoot(document.getElementById('root'));
           root.render(<Nextpage userid={res.data.result.data.name} />);
+          
         }
         if (res.data.result.inputerror) {
           this.setState({ inputError: res.data.result.inputerror })
@@ -66,7 +68,8 @@ export default class Login extends Base {
 
     return (
       <>
-        <h2 align="center" style={{ marginBottom: '1px', textDecorationLine: 'underline', marginLeft: '466px', width: '356px', color: 'white' }}>Login</h2>
+      <div className='login'>
+        <h2 align="center" style={{ marginBottom: '1px', textDecorationLine: 'underline', marginLeft: '427px', width: '356px', color: 'white' }}>Login</h2>
         <div className="data" >
           <form>
             <table>
@@ -79,7 +82,7 @@ export default class Login extends Base {
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '18px', width: '199px' }}>{this.state.inputError.loginId}  </div>
 
               <label>  Password :</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '230px' }} type="text" id='t1' placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} /></p>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '230px' }} type="password" id='t1' placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} /></p>
               <div style={{ textAlign: "center", marginLeft: "-11px", color: 'rgb(255 100 114)', height: '20px', width: '222px' }}>{this.state.inputError.password}  </div>
 
               <br></br>
@@ -90,6 +93,7 @@ export default class Login extends Base {
             <br></br>
           </form>
 
+        </div>
         </div>
       </>
     )

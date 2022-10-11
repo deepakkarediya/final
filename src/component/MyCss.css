@@ -7,7 +7,7 @@ body {
 .data {
   display: inline-block;
   border: 2px solid;
-  margin: 0px 480px;
+  margin: 0px 434px;
   padding: 2px 47px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
@@ -26,4 +26,24 @@ body {
 }
 #t1 {
   box-shadow: -1px 1px 6px 2px;
+}
+@media only screen and (min-width: 200px) and (max-width:1200px){
+  .nav1{
+    width: 1500px;
+  }
+  
+
+
+}
+@media screen and (max-width:990px) {
+  .iohome{
+    padding-left: 0px;
+
+  }
+  .home{
+    margin-top: -29px;
+    margin-left: 19px;
+
+  }
+  
 }

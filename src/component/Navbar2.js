@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import logo from "./logo.png"
-import { AiFillCaretRight, AiOutlineLogout } from "react-icons/ai";
+import { AiFillCaretRight } from "react-icons/ai";
 
-import { FaHome } from "react-icons/fa";
+import { FaHome,FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import {
   Link
 } from "react-router-dom";
@@ -87,10 +88,23 @@ export default class Navbar2 extends Component {
 
                   </ul>
                 </li>
-                <li style={{ textDecorationLine: 'underline', marginTop: '33px', width: '350px', fontWeight: 'bolder' }}>{this.props.user}</li>
+                <li className="nav-item dropdown" style={{ marginTop: "24px" ,marginLeft:"380px",fontWeight: 'bolder' }}>
+                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <FaUserAlt/>{this.props.user}
+                  </a>
+                  <ul className="dropdown-menu">
+                  <li style={{fontWeight:'bolder',margin:'0px 21px', fontSize: '15px'}}>
+                  <Link className="nav-link " onClick={this.logout}><FiLogOut/>Logout</Link>
+                </li>
+                    
+
+                  </ul>
+                </li>
+
+                {/* <li style={{ textDecorationLine: 'underline', marginTop: '33px', width: '350px', fontWeight: 'bolder' }}><FaUserAlt/>{this.props.user}</li>
                 <li>
                   <Link style={{ marginTop: "24px", marginLeft: '82px', fontWeight: 'bolder' }} className="nav-link " onClick={this.logout}><AiOutlineLogout />Logout</Link>
-                </li>
+                </li> */}
 
               </ul>
 
