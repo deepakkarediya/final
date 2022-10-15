@@ -97,9 +97,7 @@ export default class AddMarkSheet extends Base  {
       }
     render() {
         return (
-
           <>
-        
           {(() => {
           if (this.state.inputError.message) {
             return (
@@ -116,14 +114,14 @@ export default class AddMarkSheet extends Base  {
                 if (this.props.match.params.pid) {
                   return (
 
-                    <h2 style={{marginLeft:'570px',marginTop:"20px",color:'white'}}>Update Marksheet</h2>
+                    <h4 className="heading">Update Marksheet</h4>
                   )
                 }
 
                 if (!this.props.match.params.pid) {
                   return (
 
-                    <h4 style={{marginLeft:'570px',marginTop:"20px",color:'white'}}>Add Marksheet</h4>
+                    <h4 className="heading">Add Marksheet</h4>
                   )
                 }
 

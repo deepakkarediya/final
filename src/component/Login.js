@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client';
 import Base from './Base';
 import Nextpage from './Nextpage';
+import LoadingBar from 'react-top-loading-bar'
 
 
 export default class Login extends Base {
@@ -26,6 +27,13 @@ export default class Login extends Base {
     }
 
   }
+  state={
+    progress:0,
+    }
+  
+    setProgress=(progress)=>{
+      this.setState({progress: progress})
+    }
   reset() {
     this.setState({
       form: {
@@ -41,6 +49,7 @@ export default class Login extends Base {
     this.changeInputError("password", "");
   }
   login() {
+    this.setProgress(10);
     axios.post("http://api.sunilos.com:9080/ORSP10/Auth/login", this.state.form)
       .then((res) => {
         console.log(res)
@@ -61,15 +70,17 @@ export default class Login extends Base {
           this.changeInputError("loginId", "");
           this.changeInputError("password", "");
         }
-      })
+        this.setProgress(100);
+       })
 
   }
   render() {
 
     return (
       <>
+       <LoadingBar height={3} color='#f11946' progress={this.state.progress}/>
       <div className='login'>
-        <h2 align="center" style={{ marginBottom: '1px', textDecorationLine: 'underline', marginLeft: '427px', width: '356px', color: 'white' }}>Login</h2>
+        <h4 className="heading" >Login</h4>
         <div className="data" >
           <form>
             <table>
@@ -78,12 +89,12 @@ export default class Login extends Base {
               </div>
 
               <label>Email ID : </label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '230px' }} id='t1' placeholder="Enter Email ID" name="loginId" value={this.state.form.loginId} onChange={(event) => this.changeFormState(event)} />  </p>
-              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '18px', width: '199px' }}>{this.state.inputError.loginId}  </div>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '320px' }} id='t1' placeholder="Enter Email ID" name="loginId" value={this.state.form.loginId} onChange={(event) => this.changeFormState(event)} />  </p>
+              <div style={{ textAlign: "center", color: 'rgb(255 100 114)', height: '23px', width: '311px' }}>{this.state.inputError.loginId}  </div>
 
               <label>  Password :</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '230px' }} type="password" id='t1' placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} /></p>
-              <div style={{ textAlign: "center", marginLeft: "-11px", color: 'rgb(255 100 114)', height: '20px', width: '222px' }}>{this.state.inputError.password}  </div>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '320px' }} type="password" id='t1' placeholder="Enter Password" name="password" value={this.state.form.password} onChange={(event) => this.changeFormState(event)} r/></p>
+              <div style={{ textAlign: "center", color: 'rgb(255 100 114)', height: '23px', width: '311px' }}>{this.state.inputError.password}  </div>
 
               <br></br>
               <button type='button' style={{ marginRight: '40px' }} className='B' onClick={(event) => this.login(event)}>Login</button>

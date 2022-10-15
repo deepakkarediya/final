@@ -18,7 +18,7 @@ export default class Addstudent extends Base {
         collegeId: '',
         type: ''
 
-
+          
       },
       form: {
         firstName: '',
@@ -31,6 +31,7 @@ export default class Addstudent extends Base {
     if (this.props.match.params.sid) {
       this.getdata();
     }
+
 
   }
   reset() {
@@ -100,14 +101,14 @@ export default class Addstudent extends Base {
           if (this.props.match.params.sid) {
             return (
 
-              <h2 style={{ marginLeft: '570px', marginTop: "20px", color: 'white' }}>Update Student</h2>
+              <h4 className="heading">Update Student</h4>
             )
           }
 
           if (!this.props.match.params.sid) {
             return (
 
-              <h4 style={{ marginLeft: '570px', marginTop: "20px", color: 'white' }}>Add Student </h4>
+              <h4 className="heading">Add Student </h4>
             )
           }
 

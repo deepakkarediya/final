@@ -9,6 +9,11 @@ import {
 } from "react-router-dom";
 
 export default class Navbar2 extends Component {
+
+image={ width: '168px',
+  height: '55px',
+  margin: '3px 91px'
+}
   // name = localStorage.getItem('name');
   logout() {
     window.location.href = "/";
@@ -16,7 +21,7 @@ export default class Navbar2 extends Component {
   render() {
     return (
       <>
-        <nav className="navbar navbar-expand-lg  bg-light">
+        <nav style={{height:"57px"}} className="navbar navbar-expand-lg fixed-top bg-light">
           <div className="container-fluid">
             {/* <a className="navbar-brand" href="/">Navbar</a> */}
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +29,13 @@ export default class Navbar2 extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item "> <img src={logo} alt="...." style={{ width: "170px", height: "55px", margin: "0px 75px" }} /></li>
-                <li style={{ marginTop: "30px" }}><FaHome /></li>
+                <li className="nav-item "> <img src={logo} alt="...." style={this.image} /></li>
+                
                 <li className="nav-item" style={{ marginTop: "24px" }}>
-                  <Link className="nav-link active" aria-current="page" to='/' >Home</Link>
+                  <Link className="nav-link active" aria-current="page" to='/' ><FaHome /></Link>
                 </li>
                 <li className="nav-item dropdown" style={{ marginTop: "24px" }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Student
                   </a>
                   <ul className="dropdown-menu">
@@ -43,7 +48,7 @@ export default class Navbar2 extends Component {
                 </li>
 
                 <li className="nav-item dropdown" style={{ marginTop: "24px" }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Marksheet
                   </a>
                   <ul className="dropdown-menu">
@@ -55,7 +60,7 @@ export default class Navbar2 extends Component {
                 </li>
 
                 <li className="nav-item dropdown" style={{ marginTop: "24px" }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     College
                   </a>
                   <ul className="dropdown-menu">
@@ -67,7 +72,7 @@ export default class Navbar2 extends Component {
                   </ul>
                 </li>
                 <li className="nav-item dropdown" style={{ marginTop: "24px" }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Role
                   </a>
                   <ul className="dropdown-menu">
@@ -78,7 +83,7 @@ export default class Navbar2 extends Component {
                   </ul>
                 </li>
                 <li className="nav-item dropdown" style={{ marginTop: "24px" }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className="nav-link  active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User
                   </a>
                   <ul className="dropdown-menu">
@@ -88,13 +93,11 @@ export default class Navbar2 extends Component {
 
                   </ul>
                 </li>
-                <li className="nav-item dropdown" style={{ marginTop: "24px" ,marginLeft:"380px",fontWeight: 'bolder' }}>
-                  <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <FaUserAlt/>{this.props.user}
-                  </a>
+                <li className="nav-item dropdown" style={{ marginTop: "24px" ,marginLeft:"340px",fontWeight: 'bolder' }}>
+                  <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><FaUserAlt/> {this.props.user}</a>
                   <ul className="dropdown-menu">
                   <li style={{fontWeight:'bolder',margin:'0px 21px', fontSize: '15px'}}>
-                  <Link className="nav-link " onClick={this.logout}><FiLogOut/>Logout</Link>
+                  <Link className="nav-link active" onClick={this.logout}><FiLogOut/> Logout</Link>
                 </li>
                     
 

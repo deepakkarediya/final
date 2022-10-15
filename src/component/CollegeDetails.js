@@ -107,14 +107,14 @@ export default class CollegeDetails extends Base {
                 if (this.props.match.params.cid) {
                   return (
 
-                    <h2 style={{marginLeft:'570px',marginTop:"20px",color:'white'}}>Update college</h2>
+                    <h4 className="heading">Update college</h4>
                   )
                 }
 
                 if (!this.props.match.params.cid) {
                   return (
 
-                    <h4 style={{marginLeft:'570px',marginTop:"20px",color:'white'}}>Add college</h4>
+                    <h4 className="heading">Add college</h4>
                   )
                 }
 
