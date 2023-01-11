@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import logo from "./logo.png"
+import logo from "../images/logo.png"
 import { AiFillCaretRight } from "react-icons/ai";
 
 import { FaHome,FaUserAlt } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import {
-  Link
-} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export default class Navbar2 extends Component {
 

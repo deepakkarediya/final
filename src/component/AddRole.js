@@ -3,8 +3,9 @@ import axios from "axios";
 import Base from "./Base"
 import FormError from './FormError'
 import FormMessage from "./FormMessage";
+import withRouter from "./withRouter";
 
-export default class AddRole extends Base {
+ class AddRole extends Base {
 
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ export default class AddRole extends Base {
         discription: ''
       }
     }
-    if (this.props.match.params.rid) {
+    if (this.props.params.rid) {
       this.getdata();
 
     }
@@ -43,7 +44,7 @@ export default class AddRole extends Base {
     this.changeInputError("type", "");
   }
   getdata() {
-    let id = this.props.match.params.rid;
+    let id = this.props.params.rid;
     axios.get("http://api.sunilos.com:9080/ORSP10/Role/get/" + id)
       .then((res) => {
         this.setState({ form: res.data.result.data });
@@ -91,14 +92,14 @@ export default class AddRole extends Base {
         })()
         }
         {(() => {
-                if (this.props.match.params.rid) {
+                if (this.props.params.rid) {
                   return (
 
                     <h4  className="heading">Update Role</h4>
                   )
                 }
 
-                if (!this.props.match.params.rid) {
+                if (!this.props.params.rid) {
                   return (
 
                     <h4  className="heading">Add Role</h4>
@@ -116,11 +117,11 @@ export default class AddRole extends Base {
            
 
               <label>Name:</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" className="t1"placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('name')} /> </div>
               
               <label>Discription: </label>
-              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="text" id="t1" placeholder="Enter discription" name="discription" value={this.state.form.discription} onChange={this.changeFormState} /> </p>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="text" className="t1"placeholder="Enter discription" name="discription" value={this.state.form.discription} onChange={this.changeFormState} /> </p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('discription')} /></div>
           
               <br></br>
@@ -137,3 +138,4 @@ export default class AddRole extends Base {
     )
   }
 }
+export default withRouter(AddRole);

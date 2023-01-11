@@ -2,8 +2,10 @@ import axios from 'axios';
 import Base from './Base'
 import FormError from './FormError';
 import FormMessage from './FormMessage';
+import withRouter from './withRouter';
 
-export default class CollegeDetails extends Base {
+
+ class CollegeDetails extends Base {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +32,7 @@ export default class CollegeDetails extends Base {
       },
 
     }
-    if (this.props.match.params.cid) {
+    if (this.props.params.cid) {
       this.getdata();
 
     }
@@ -58,7 +60,7 @@ export default class CollegeDetails extends Base {
           this.changeInputError("type", "");
   }
   getdata() {
-    let id = this.props.match.params.cid;
+    let id = this.props.params.cid;
     axios.get("http://api.sunilos.com:9080/ORSP10/College/get/" + id)
       .then((res) => {
         this.setState({ form: res.data.result.data });
@@ -104,14 +106,14 @@ export default class CollegeDetails extends Base {
         })()
         }
         {(() => {
-                if (this.props.match.params.cid) {
+                if (this.props.params.cid) {
                   return (
 
                     <h4 className="heading">Update college</h4>
                   )
                 }
 
-                if (!this.props.match.params.cid) {
+                if (!this.props.params.cid) {
                   return (
 
                     <h4 className="heading">Add college</h4>
@@ -129,23 +131,23 @@ export default class CollegeDetails extends Base {
            
 
               <label>Name:</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" className="t1"placeholder="Enter name" name="name" value={this.state.form.name} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('name')} /> </div>
               
               <label>PhoneNo: </label>
-              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="number" id="t1" placeholder="Enter PhoneNo" name="phoneNo" value={this.state.form.phoneNo} onChange={this.changeFormState} /> </p>
+              <p style={{marginBottom: '0rem'}}> <input style={{width:'308px'}} type="number" className="t1"placeholder="Enter PhoneNo" name="phoneNo" value={this.state.form.phoneNo} onChange={this.changeFormState} /> </p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'  }}> <FormError errorName={this.getInputError('phoneNo')} /></div>
               
               <label>Address:</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter Address" name="address" value={this.state.form.address} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" className="t1"placeholder="Enter Address" name="address" value={this.state.form.address} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('address')} /></div>
               
               <label>City:</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter city" name="city" value={this.state.form.city} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" className="t1"placeholder="Enter city" name="city" value={this.state.form.city} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px' }}><FormError errorName={this.getInputError('city')} /> </div>
               
               <label>State:</label>
-              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" id="t1" placeholder="Enter state" name="state" value={this.state.form.state} onChange={this.changeFormState} /></p>
+              <p style={{marginBottom: '0rem'}}><input style={{width:'308px'}} type="text" className="t1"placeholder="Enter state" name="state" value={this.state.form.state} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)',height: '22px',width:'298px'}}><FormError errorName={this.getInputError('state')} /> </div>
 
               <br></br>
@@ -161,3 +163,4 @@ export default class CollegeDetails extends Base {
     )
   }
 }
+export default withRouter(CollegeDetails);

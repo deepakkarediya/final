@@ -1,40 +1,50 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Play&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 body {
-  background-image: url(bg.jpg);
-
-  background-size: auto;
-  background-repeat: no-repeat;
+  background: url("../images/background.jpg");
 }
 .data {
-  border: 2px solid whitesmoke;
+  border: 2px solid #123a3375;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 30%;
   margin-left: 480px;
-  /* margin: 1px 434px; */
- /* padding: 2px 47px;  */
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 64%);
   border-radius: 15px;
-  color: white;
-  box-shadow: 2px 5px 10px 1px;
+  box-shadow: 5px 11px 20px -1px;
 }
-
-
-.heading{
-  margin-bottom: 1px;
-  margin-top: 61px;
-  /* text-decoration-line: underline; */
-  /* margin-left: 427px; */
+label {
+  font-family: "Play", sans-serif;
+  color: azure;
+}
+.heading {
+  margin: 79px 0 0 482px;
+  background-color: beige;
+  color: "black";
   display: flex;
-  width: 100%;
   justify-content: center;
-  align-items: center;
-  color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 30%;
+}
+.searchForm {
+  display: flex;
+  justify-content: center;
+  margin: 86px 0px 10px 0px;
+}
+select,
+input {
+  display: block;
+  width: 308px;
+  font-size: 16px;
+  border: 2px solid darkred;
 }
 
 .B {
@@ -47,10 +57,14 @@ body {
 .B:hover {
   background: linear-gradient(blue, black);
 }
-#t1 {
+.t1 {
   box-shadow: -1px 1px 6px 2px;
 }
-@media only screen and (min-width: 200px) and (max-width:1200px){
+#navv1{
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+/* @media only screen and (min-width: 200px) and (max-width:1200px){
   .nav1{
     width: 1500px;
   }
@@ -69,4 +83,4 @@ body {
 
   }
   
-}
+} */

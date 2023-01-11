@@ -6,6 +6,7 @@ import Nextpage from './Nextpage';
 import LoadingBar from 'react-top-loading-bar'
 
 
+
 export default class Login extends Base {
   constructor(props) {
     super(props);
@@ -54,8 +55,7 @@ export default class Login extends Base {
       .then((res) => {
         console.log(res)
         if (res.data.success === true) {
-          alert("login successfully")
-          
+          alert("login successfully");          
           const root = ReactDOM.createRoot(document.getElementById('root'));
           root.render(<Nextpage userid={res.data.result.data.name} />);
           
@@ -82,7 +82,7 @@ export default class Login extends Base {
       <div className='login'>
         <h4 className="heading" >Login</h4>
         <div className="data" >
-          <form>
+          <form >
             <table>
               <div style={{ color: 'rgb(255 100 114)', height: '40px', width: '240px', fontSize: '24px' }}>
                 {this.state.inputError.message}
@@ -106,7 +106,17 @@ export default class Login extends Base {
 
         </div>
         </div>
+        <div style={{
+                backgroundColor: 'black',
+                color: 'white',
+                textAlign: 'center',
+                marginTop: '205px',
+                height: '30px'
+            }}>
+                Copyright © ORS pvt.ltd || All right reserved
+            </div>
       </>
     )
   }
 }
+

@@ -18,20 +18,21 @@ export default class RoleList extends Base {
         }
         this.search();
     }
-    state={
-        progress:0,
-        }
-      
-        setProgress=(progress)=>{
-          this.setState({progress: progress})
-        }
+    state = {
+        progress: 0,
+    }
+
+    setProgress = (progress) => {
+        this.setState({ progress: progress })
+    }
     search() {
         this.setProgress(10)
         axios.post("http://api.sunilos.com:9080/ORSP10/Role/search/", this.state)
             .then((res) => {
                 // console.log(res);
                 this.setState({ list: res.data.result.data });
-                this.setProgress(100) });
+                this.setProgress(100)
+            });
     }
     delete(id) {
         this.setProgress(10)
@@ -50,33 +51,29 @@ export default class RoleList extends Base {
     render() {
         return (
             <>
-             <LoadingBar height={3} color='#f11946' progress={this.state.progress}/>
-             {(()=>{if(this.state.inputError.message){
-              return(
-           
-            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-                 
-              )
-            }
-            })()
-            }
-                <div style={{margin: '65px'}} className="container overflow-hidden text-center my-5">
-                    <div className="row gx-2" style={{ marginTop: '50px' }}>
-                        <div className="col text-end">
-                            <div className="p-3 ">  <input name="discription" placeholder='Search by discription'
-                                value={this.state.discription}
-                                onChange={(event) => this.changeState(event)} /></div>
-                        </div>
-                        <div className="col text-start">
-                            <div className="p-3 "><input name="name" placeholder='Search by Name' type="text"
-                                value={this.state.name}
-                                onChange={this.changeState} /> &nbsp; &nbsp;
-                                <button type='button'
-                                    onClick={(event) => this.search(event)}>Search</button></div>
-                        </div>
+                <LoadingBar height={3} color='#f11946' progress={this.state.progress} />
+                {(() => {
+                    if (this.state.inputError.message) {
+                        return (
 
-                    </div>
+                            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
+
+                        )
+                    }
+                })()
+                }
+                <div className="searchForm">
+                    <input name="discription" placeholder='Search by discription'
+                        value={this.state.discription}
+                        onChange={(event) => this.changeState(event)} /> &nbsp; &nbsp;
+                    <input name="name" placeholder='Search by Name' type="text"
+                        value={this.state.name}
+                        onChange={this.changeState} /> &nbsp; &nbsp;
+                    <button type='button' className="B" onClick={(event) => this.search(event)}>Search</button>
+
+
                 </div>
+
                 <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">
                         <tr>
@@ -92,14 +89,14 @@ export default class RoleList extends Base {
                         {this.state.list.map((ele, i) => (
                             <tr key={i}>
 
-                                <td>{i+1}</td>
+                                <td>{i + 1}</td>
 
                                 <td>{ele.name}</td>
                                 <td>{ele.discription}</td>
-                               
+
                                 <td> <button className="btn btn-primary " type="button" onClick={(event) => this.delete(ele.id)}>Delete</button> </td>
                                 {/* <td><Link to={'/addrole/' + ele.id}>Edit</Link></td> */}
-                                <td><button className="text-bg-warning"  style={{ border:"none",borderRadius: '7px', marginLeft: '18px', padding: '5px 19px', background: '#efff00f2' }} type="button"><Link style={{color:"black",textDecoration:"none"}} to={'/addrole/' + ele.id}>Edit</Link></button></td>
+                                <td><button className="text-bg-warning" style={{ border: "none", borderRadius: '7px', marginLeft: '18px', padding: '5px 19px', background: '#efff00f2' }} type="button"><Link style={{ color: "black", textDecoration: "none" }} to={'/addrole/' + ele.id}>Edit</Link></button></td>
                             </tr>
                         ))
                         }

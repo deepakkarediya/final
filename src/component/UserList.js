@@ -62,23 +62,21 @@ export default class UserList extends Base {
             }
             })()
             }
-                <div  style={{margin: '65px'}} className="container overflow-hidden text-center my-5">
-                    <div className="row gx-2" style={{ marginTop: '50px' }}>
-                        <div className="col text-end">
-                            <div className="p-3 ">  <input name="loginId" type="number" placeholder='Search by loginId'
+                
+                  
+                     
+                            <div className="searchForm">  <input name="loginId" type="number" placeholder='Search by loginId'
                                 value={this.state.loginId}
-                                onChange={(event) => this.changeState(event)} /></div>
-                        </div>
-                        <div className="col text-start">
-                            <div className="p-3 "><input name="roleId" placeholder='Search by roleId' type="number"
+                                onChange={(event) => this.changeState(event)} />&nbsp; &nbsp;
+                       
+                     
+                          <input name="roleId" placeholder='Search by roleId' type="number"
                                 value={this.state.roleId}
                                 onChange={this.changeState} /> &nbsp; &nbsp;
-                                <button type='button'
-                                    onClick={(event) => this.search(event)}>Search</button></div>
-                        </div>
-
-                    </div>
+                                <button type='button' className="B" onClick={(event) => this.search(event)}>Search</button>
+                                    
                 </div>
+               
                 <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">
                         <tr>
