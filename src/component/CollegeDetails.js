@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Base from './Base'
 import FormError from './FormError';
-import FormMessage from './FormMessage';
+// import FormMessage from './FormMessage';
 import withRouter from './withRouter';
 
 
@@ -75,9 +75,10 @@ import withRouter from './withRouter';
         if (res.data.result.inputerror) {
           this.setState({ inputError: res.data.result.inputerror });
           this.changeInputError("error", "true");
-        } else {
+        } else if(this.props.params.cid) {
+          this.props.showAlert("College Updated successfully","success");
           this.changeInputError("error", "false");
-          this.changeInputError("message", "data saved successfully");
+          // this.changeInputError("message", "data saved successfully");
           this.changeInputError("name", "")
           this.changeInputError("phoneNo", "")
           this.changeInputError("address", "")
@@ -86,6 +87,16 @@ import withRouter from './withRouter';
           this.changeInputError("type", "success");
 
 
+        }else{
+          this.props.showAlert("College Added successfully","success");
+          this.changeInputError("error", "false");
+          this.changeInputError("name", "")
+          this.changeInputError("phoneNo", "")
+          this.changeInputError("address", "")
+          this.changeInputError("city", "")
+          this.changeInputError("state", "")
+          this.changeInputError("type", "success");
+
         }
       });
   }
@@ -93,7 +104,7 @@ import withRouter from './withRouter';
   render() {
     return (
       <>
-        {(() => {
+        {/* {(() => {
           if (this.state.inputError.message) {
             return (
               <div>
@@ -104,7 +115,7 @@ import withRouter from './withRouter';
           }
 
         })()
-        }
+        } */}
         {(() => {
                 if (this.props.params.cid) {
                   return (

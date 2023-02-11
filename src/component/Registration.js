@@ -1,7 +1,7 @@
 import axios from "axios";
 import Base from "./Base"
 import FormError from './FormError'
-import FormMessage from "./FormMessage";
+// import FormMessage from "./FormMessage";
 
 
 export default class Registration extends Base {
@@ -13,6 +13,7 @@ export default class Registration extends Base {
 
       inputError: {
         error: '',
+        message2:"",
         message: '',
         firstName: '',
         lastName: '',
@@ -46,6 +47,7 @@ export default class Registration extends Base {
 
       }
     })
+    this.changeInputError("message2","");
     this.changeInputError("firstName", "");
     this.changeInputError("lastName", "");
     this.changeInputError("loginId", "");
@@ -62,16 +64,21 @@ export default class Registration extends Base {
 
           this.setState({ inputError: res.data.result.inputerror });
         }
-        else {
+        else if(res.data.result.message) {
 
-          this.changeInputError("message", "Register successfully");
+          console.log(res.data.result.message);
+          this.changeInputError("message2", res.data.result.message);
+
+        }
+        else{
+         this.props.showAlert("Register successfully","success");
           this.changeInputError("error", "false");
           this.changeInputError("firstName", "");
           this.changeInputError("lastName", "");
           this.changeInputError("loginId", "");
           this.changeInputError("password", "");
           this.changeInputError("roleId", "");
-          this.changeInputError("type", "success");
+         
         }
 
       });
@@ -80,12 +87,10 @@ export default class Registration extends Base {
     this.getRole();
   }
   getRole() {
-
     axios.post("http://api.sunilos.com:9080/ORSP10/User/search", this.state)
       .then((res) => {
-
         this.setState({ list: res.data.result.data });
-        console.log(this.state.list);
+      
       })
       .catch(
         () => {
@@ -101,7 +106,8 @@ export default class Registration extends Base {
   render() {
     return (
       <>
-        {
+      
+        {/* {
           (() => {
             if (this.state.inputError.message) {
               return (
@@ -112,7 +118,8 @@ export default class Registration extends Base {
               )
             }
           })()
-        }
+        } */}
+  
         <h4 className="heading" >User Registration</h4>
         <div className="data" style={{  }}>
           <form>
@@ -129,6 +136,7 @@ export default class Registration extends Base {
               <label>Email ID:</label>
               <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1"placeholder="Enter LoginId" name="loginId" value={this.state.form.loginId} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}><FormError errorName={this.getInputError('loginId')} /></div>
+              <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' ,marginTop:'-11px'}}><FormError errorName={this.getInputError('message2')} /></div>
 
               <label>Password :</label>
               <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="password" className="t1"placeholder="Enter password" name="password" value={this.state.form.password} onChange={this.changeFormState} /></p>

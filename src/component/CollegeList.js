@@ -1,7 +1,7 @@
 import axios from "axios";
 import Base from "./Base"
 import { Link } from "react-router-dom";
-import FormMessage from './FormMessage';
+// import FormMessage from './FormMessage';
 import LoadingBar from 'react-top-loading-bar'
 export default class CollegeList extends Base {
     constructor(props) {
@@ -38,7 +38,8 @@ export default class CollegeList extends Base {
         let url = "http://api.sunilos.com:9080/ORSP10/College/delete/" + id;
         this.setProgress(10)
         axios.get(url).then((res) => {
-            this.changeInputError("message", "Data Deleted Successfully");
+            this.props.showAlert("College Data Deleted successfully","danger");
+            // this.changeInputError("message", "Data Deleted Successfully");
             this.changeInputError("error", "false");
             this.changeInputError("type", "success");
             this.setProgress(100)
@@ -53,7 +54,7 @@ export default class CollegeList extends Base {
         return (
             <>
                 <LoadingBar height={3} color='#f11946' progress={this.state.progress} />
-                {(() => {
+                {/* {(() => {
                     if (this.state.inputError.message) {
                         return (
 
@@ -62,7 +63,7 @@ export default class CollegeList extends Base {
                         )
                     }
                 })()
-                }
+                } */}
                 <div className="searchForm">
                    
                         <input name="phoneNo" type="number" placeholder='Search by phoneNo'

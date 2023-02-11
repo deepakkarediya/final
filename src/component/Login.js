@@ -55,7 +55,8 @@ export default class Login extends Base {
       .then((res) => {
         console.log(res)
         if (res.data.success === true) {
-          alert("login successfully");          
+          
+              
           const root = ReactDOM.createRoot(document.getElementById('root'));
           root.render(<Nextpage userid={res.data.result.data.name} />);
           

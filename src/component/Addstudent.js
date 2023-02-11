@@ -1,11 +1,9 @@
 import axios from "axios";
 import Base from "./Base"
 import FormError from './FormError'
-import FormMessage from "./FormMessage";
 import withRouter from "./withRouter";
 
 class Addstudent extends Base {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +17,7 @@ class Addstudent extends Base {
         collegeId: '',
         type: ''
 
-          
+
       },
       form: {
         firstName: '',
@@ -69,15 +67,24 @@ class Addstudent extends Base {
           this.setState({ inputError: res.data.result.inputerror });
           this.changeInputError("error", "true");
         }
-        else {
-          this.changeInputError("message", "Data save successfully");
-          this.changeInputError("error", "false");
+        else if (this.props.params.sid) {
+          this.props.showAlert("Update student successfully", "success");
+
           this.changeInputError("firstName", "");
           this.changeInputError("lastName", "");
           this.changeInputError("mobileNo", "");
           this.changeInputError("email", "");
           this.changeInputError("collegeId", "");
-          this.changeInputError("type", "success");
+
+        } else {
+          this.props.showAlert("Add student successfully", "success");
+          this.changeInputError("firstName", "");
+          this.changeInputError("lastName", "");
+          this.changeInputError("mobileNo", "");
+          this.changeInputError("email", "");
+          this.changeInputError("collegeId", "");
+
+
         }
 
       });
@@ -85,20 +92,6 @@ class Addstudent extends Base {
   render() {
     return (
       <>
-
-        {(() => {
-          if (this.state.inputError.message) {
-            return (
-              <div>
-                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
-
-              </div>
-            )
-          }
-
-        })()
-        }
-
         {(() => {
           if (this.props.params.sid) {
             return (
@@ -123,23 +116,23 @@ class Addstudent extends Base {
             <table>
 
               <label>FirstName : </label>
-              <p style={{ marginBottom: '0rem' }}> <input style={{ width: '308px' }} type="text" className="t1"placeholder="Enter Firstname" name="firstName" value={this.state.form.firstName} onChange={this.changeFormState} /> </p>
+              <p style={{ marginBottom: '0rem' }}> <input style={{ width: '308px' }} type="text" className="t1" placeholder="Enter Firstname" name="firstName" value={this.state.form.firstName} onChange={this.changeFormState} /> </p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}> <FormError errorName={this.getInputError('firstName')} /></div>
 
               <label>LastName :</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1"placeholder="Enter Lastname" name="lastName" value={this.state.form.lastName} onChange={this.changeFormState} /></p>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1" placeholder="Enter Lastname" name="lastName" value={this.state.form.lastName} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}><FormError errorName={this.getInputError('lastName')} /> </div>
 
               <label>emailId:</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1"placeholder="Enter emailId" name="email" value={this.state.form.email} onChange={this.changeFormState} /></p>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1" placeholder="Enter emailId" name="email" value={this.state.form.email} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}><FormError errorName={this.getInputError('email')} /></div>
 
               <label>MobileNo:</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1"placeholder="Enter mobileNo" name="mobileNo" value={this.state.form.mobileNo} onChange={this.changeFormState} /></p>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="text" className="t1" placeholder="Enter mobileNo" name="mobileNo" value={this.state.form.mobileNo} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}><FormError errorName={this.getInputError('mobileNo')} /> </div>
 
               <label>collegeId :</label>
-              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="number" className="t1"placeholder="Enter collegeId" name="collegeId" value={this.state.form.collegeId} onChange={this.changeFormState} /></p>
+              <p style={{ marginBottom: '0rem' }}><input style={{ width: '308px' }} type="number" className="t1" placeholder="Enter collegeId" name="collegeId" value={this.state.form.collegeId} onChange={this.changeFormState} /></p>
               <div style={{ textAlign: "center", padding: "0px 0px", color: 'rgb(255 100 114)', height: '22px', width: '298px' }}><FormError errorName={this.getInputError('collegeId')} /> </div>
 
               <br></br>

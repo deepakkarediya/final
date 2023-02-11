@@ -1,46 +1,53 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Alert from "./component/Alert";
 import Login from "./component/Login";
 import Navbar1 from "./component/Navbar1";
-import "./App.css";
 import Registration from "./component/Registration";
-// import FormMessage from "./component/FormMessage";
+
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      msg:"",
+      type:"",
+     }
+  }
+ 
+  showAlert=(message,type)=>{
+      this.setState({
+      msg:message,
+      type:type
+    });
+    setTimeout(() => {
+      this.setState({msg:"",
+      type:""});
+    }, 2000);
 
-
-
+  }
   render() {
     return (
       <>
         <BrowserRouter>
           <Navbar1 />
-            
+          <Alert alert={this.state}/>
           <Routes>
             <Route
               path="/login"
               element={
-                <Login />
+                <Login showAlert={this.showAlert}/>
               }
             />
             <Route
-              path="/addstudent"
+              path="/addstudent" 
               element={
-                <Registration />
+                <Registration showAlert={this.showAlert}/>
               }
             />
           </Routes>
         </BrowserRouter>
 
-        {/* <Router>
-          <Navbar1 mode={this.state.mode} toggle={this.toggleMode}/>              
-          <Switch>
-          
-            <Route exact path="/login" component={() => <Login  mode={this.state.mode}/> }  />  
-             <Route exact path="/addstudent" component={() => <Registration  mode={this.state.mode}/>} />
-           
-          </Switch>
-        </Router> */}
       </>
     );
   }

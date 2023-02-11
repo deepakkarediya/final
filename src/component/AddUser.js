@@ -1,7 +1,6 @@
 import axios from "axios";
 import Base from "./Base"
 import FormError from './FormError'
-import FormMessage from "./FormMessage";
 import withRouter from "./withRouter";
 
  class AddUser extends Base {
@@ -73,15 +72,23 @@ import withRouter from "./withRouter";
 
           this.setState({ inputError: res.data.result.inputerror });
         }
-        else {
-          this.changeInputError("message", "Register successfully");
-          this.changeInputError("error", "false");
+        else if(this.props.params.uid){
+          this.props.showAlert("User Updated successfully","success");
+    
           this.changeInputError("firstName", "");
           this.changeInputError("lastName", "");
           this.changeInputError("loginId", "");
           this.changeInputError("password", "");
           this.changeInputError("roleId", "");
-          this.changeInputError("type", "success");
+  
+        }else{
+          this.props.showAlert("User Added successfully","success");
+          this.changeInputError("firstName", "");
+          this.changeInputError("lastName", "");
+          this.changeInputError("loginId", "");
+          this.changeInputError("password", "");
+          this.changeInputError("roleId", "");
+
         }
 
       });
@@ -89,17 +96,7 @@ import withRouter from "./withRouter";
   render() {
     return (
       <>
-        {(() => {
-          if (this.state.inputError.message) {
-            return (
-              <div>
-                <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} />
-              </div>
-            )
-          }
-
-        })()
-        }
+       
         {(() => {
           if (this.props.params.uid) {
             return (
