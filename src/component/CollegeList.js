@@ -1,7 +1,6 @@
 import axios from "axios";
 import Base from "./Base"
 import { Link } from "react-router-dom";
-// import FormMessage from './FormMessage';
 import LoadingBar from 'react-top-loading-bar'
 export default class CollegeList extends Base {
     constructor(props) {
@@ -38,8 +37,7 @@ export default class CollegeList extends Base {
         let url = "http://api.sunilos.com:9080/ORSP10/College/delete/" + id;
         this.setProgress(10)
         axios.get(url).then((res) => {
-            this.props.showAlert("College Data Deleted successfully","danger");
-            // this.changeInputError("message", "Data Deleted Successfully");
+            this.props.showAlert("College Data Deleted successfully", "danger");
             this.changeInputError("error", "false");
             this.changeInputError("type", "success");
             this.setProgress(100)
@@ -54,27 +52,18 @@ export default class CollegeList extends Base {
         return (
             <>
                 <LoadingBar height={3} color='#f11946' progress={this.state.progress} />
-                {/* {(() => {
-                    if (this.state.inputError.message) {
-                        return (
-
-                            <div> <FormMessage type={this.getInputError("type")} error={this.getInputError("error")} message={this.getInputError('message')} /> </div>
-
-                        )
-                    }
-                })()
-                } */}
+              
                 <div className="searchForm">
-                   
-                        <input name="phoneNo" type="number" placeholder='Search by phoneNo'
-                            value={this.state.phoneNo}
-                            onChange={(event) => this.changeState(event)} /> &nbsp; &nbsp;
-                        <input name="name" placeholder='Search by Name' type="text"
-                            value={this.state.name}
-                            onChange={this.changeState} /> &nbsp; &nbsp;
-                        <button className='B' type='button'
-                            onClick={(event) => this.search(event)}>Search</button>
-                   
+
+                    <input name="phoneNo" type="number" placeholder='Search by phoneNo'
+                        value={this.state.phoneNo}
+                        onChange={(event) => this.changeState(event)} /> &nbsp; &nbsp;
+                    <input name="name" placeholder='Search by Name' type="text"
+                        value={this.state.name}
+                        onChange={this.changeState} /> &nbsp; &nbsp;
+                    <button className='B' type='button'
+                        onClick={(event) => this.search(event)}>Search</button>
+
                 </div>
                 <table style={{ width: "70%", margin: "0px 200px" }} className="table table-success table-hover table-bordered border-success">
                     <thead className="table-dark">

@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/HelloWorld/static/css/main.402eada3.css",
-    "main.js": "/HelloWorld/static/js/main.32ca91bf.js",
-    "static/js/787.633816a4.chunk.js": "/HelloWorld/static/js/787.633816a4.chunk.js",
-    "static/media/background.jpg": "/HelloWorld/static/media/background.b6da4249e919bbc95cc9.jpg",
-    "static/media/exam-results.png": "/HelloWorld/static/media/exam-results.c1a37fa204666c0fff07.png",
-    "static/media/logo.png": "/HelloWorld/static/media/logo.a72c0c50ec743c0ade6e.png",
-    "index.html": "/HelloWorld/index.html",
-    "main.402eada3.css.map": "/HelloWorld/static/css/main.402eada3.css.map",
-    "main.32ca91bf.js.map": "/HelloWorld/static/js/main.32ca91bf.js.map",
-    "787.633816a4.chunk.js.map": "/HelloWorld/static/js/787.633816a4.chunk.js.map"
+    "main.css": "/static/css/main.1a4f4b00.css",
+    "main.js": "/static/js/main.8f086fee.js",
+    "static/js/787.633816a4.chunk.js": "/static/js/787.633816a4.chunk.js",
+    "static/media/background.jpg": "/static/media/background.b6da4249e919bbc95cc9.jpg",
+    "static/media/exam-results.png": "/static/media/exam-results.c1a37fa204666c0fff07.png",
+    "static/media/logo.png": "/static/media/logo.a72c0c50ec743c0ade6e.png",
+    "index.html": "/index.html",
+    "main.1a4f4b00.css.map": "/static/css/main.1a4f4b00.css.map",
+    "main.8f086fee.js.map": "/static/js/main.8f086fee.js.map",
+    "787.633816a4.chunk.js.map": "/static/js/787.633816a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.402eada3.css",
-    "static/js/main.32ca91bf.js"
+    "static/css/main.1a4f4b00.css",
+    "static/js/main.8f086fee.js"
   ]
 }
